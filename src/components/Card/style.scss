@@ -1,0 +1,38 @@
+.card {
+    background-color: transparent;
+    width: 100%;
+    height: 200px;
+    perspective: 1000px;
+
+    &__flip {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+
+        &__front,
+        &__back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        &__back {
+            background-color: #555;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+    }
+}
+
+.card__flip.flip {
+    transform: rotateY(180deg);
+}
+
+.card__flip.flip.hide {
+    border: 1px solid red
+}
