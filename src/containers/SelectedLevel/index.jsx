@@ -11,7 +11,7 @@ const SelectedLevel = memo(() => {
     dispatch(setLevel(level))
   }
   return (
-    <div className="f-a-i-c p-10">
+    <div className="f-a-i-c">
       <div className="m-r-20">Level: </div>
       <Select data={GAME_LEVEL} label="name" onChange={onChange} disabled={isPlaying}/>
       <Button className="m-l-20" disabled={isPlaying} onClick={() => dispatch(startGame(true))}>Start</Button>

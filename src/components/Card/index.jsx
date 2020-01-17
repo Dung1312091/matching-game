@@ -7,7 +7,7 @@ const Card = ({ card, onSelect }) => {
       onClick={() => onSelect(card)}
     >
       <div className={`card__flip ${card.flipped ? "flip" : ""}`}>
-        <div className="card__flip__front">Hello</div>
+        <div className="card__flip__front"/>
         <div className="card__flip__back">{card.name}</div>
       </div>
     </div>

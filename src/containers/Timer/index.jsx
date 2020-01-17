@@ -1,4 +1,4 @@
-import React, { memo,useContext, useEffect, useState, useRef } from "react";
+import React, { memo,useContext, useEffect, useState } from "react";
 import Countdown from "react-countdown";
 import {AppContext} from "../../contexts/appContext"
 import {lostGame} from "../../actions"
@@ -15,7 +15,6 @@ const renderer = ({ minutes, seconds, completed }) => {
   
 };
 const Timer = memo(() => {
-  const timerRef= useRef(null);
   const {state, dispatch} = useContext(AppContext);
   const {isPlaying, level, isWon} = state;
   const [time, setTime] = useState(Date.now() + level.timer * 1000)

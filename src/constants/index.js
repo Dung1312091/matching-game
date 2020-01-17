@@ -3,14 +3,14 @@ export const LEVEL = {
     Easy: {
         id: 1,
         name: "Easy",
-        cardNumber: 4,
+        cardNumber: 16,
         timer: 120 //seconds
     },
     Normal: {
         id: 2,
         name: "Normal",
-        cardNumber: 2,
-        timer: 160 //seconds
+        cardNumber: 16,
+        timer: 60 //seconds
     },
     Hard: {
         id: 3,

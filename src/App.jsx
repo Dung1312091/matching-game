@@ -11,13 +11,13 @@ export default function App() {
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <div className="App">
-        <div className="App">
+     
           <SelectedLevel />
           <Result/>
           <Timer />
           <BoardGame />
           <Message/>
-        </div>
+      
       </div>
     </AppContext.Provider>
   );
