@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { Form } from "react-bootstrap";
-const Select = memo(({ data = [], label, onChange }) => {
+import "./style.scss";
+const Select = memo(({ data = [], label, onChange, ...rest }) => {
   const handleSelect = e => {
     const itemSelected = data[e.target.value];
     if (onChange) {
@@ -8,9 +9,8 @@ const Select = memo(({ data = [], label, onChange }) => {
     }
   };
   return (
-    <Form.Group controlId="exampleForm.ControlSelect1">
-      <Form.Label>Example select</Form.Label>
-      <Form.Control as="select" onChange={handleSelect}>
+    <Form.Group controlId="exampleForm.ControlSelect1" className="select">
+      <Form.Control as="select" onChange={handleSelect} {...rest}>
         {data.map((item, index) => (
           <option key={item.id} value={index}>
             {item[label]}
