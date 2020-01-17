@@ -30,3 +30,16 @@ export function showModalMessage(  payload) {
         payload
     }
 }
+export function playAgain(  payload) {
+    return {
+        type: "PLAY_AGAIN",
+        payload
+    }
+}
+
+export function playDiffLevel(  payload) {
+    return {
+        type: "PLAY_DIFF_LEVEL",
+        payload
+    }
+}

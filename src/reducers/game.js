@@ -1,38 +1,51 @@
 import { genarateCards } from "../utils";
 import {LEVEL} from "../constants"
-const cards = genarateCards(LEVEL.EASY);
+const cards = genarateCards(LEVEL.Easy);
 
 export const initialState = {
   initCards: cards,
   isPlaying: false,
-  level: LEVEL.EASY,
+  level: LEVEL.Easy,
   wonCount: 0,
   lostCount: 0,
   showModal: false,
-  isWon: false
+  isWon: false,
+  timeStart: 0,
+  timeRemain: {}
 }
 export const game = (state, action) => {
     switch (action.type) {
         case 'SET_LEVEL':
-            console.log(LEVEL[action.payload.name]);
-
             return {
                 ...state,
                 level: action.payload,
                 initCards: genarateCards(LEVEL[action.payload.name])
             }
-        case "START_GAME" : 
+        case "START_GAME" :   
         return {
             ...state,
-            isPlaying: action.payload
+            isPlaying: action.payload,
+            timeStart: Date.now()
         }
-        case "WIN_GAME" : 
+        case "WIN_GAME" :
+        const remain = Date.now() - state.timeStart;
+        const bestTime = state.timeRemain[state.level.name] || Date.now();
+        console.log("remain===>",remain);
+        console.log("bestTime===>",bestTime);
+
+        
         return {
             ...state,
             wonCount: state.wonCount + 1,
             isPlaying: false,
             isWon: true,
-            showModal: true
+            showModal: true,
+            timeRemain: {
+                ...state.timeRemain,
+                [state.level.name]:  remain < bestTime ? remain : bestTime
+            },
+    
+
 
         }
         case "LOST_GAME" : 
@@ -49,6 +62,26 @@ export const game = (state, action) => {
                 ...state,
                 showModal: action.payload
     
+            }
+        }
+        case "PLAY_AGAIN": {
+            return {
+                ...state,
+                showModal: false,
+                isWon: false,
+                isPlaying: true,
+                initCards: genarateCards(LEVEL[state.level.name]),
+                timeStart: Date.now()
+    
+            }
+        }
+        case "PLAY_DIFF_LEVEL": {
+            return {
+                ...state,
+                showModal: false,
+                isWon: false,
+                isPlaying: false,
+                initCards: genarateCards(LEVEL[state.level.name])
             }
         }
         default:

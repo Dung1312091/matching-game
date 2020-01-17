@@ -34,3 +34,10 @@ export function genarateCards(level={}) {
     }, []);
     return shuffleArray(cards);
 }
+
+export function millisToMinutesAndSeconds(millis) {
+    if(!millis) return "--:--"
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }

@@ -1,22 +1,20 @@
-export const EASY = "Easy";
-export const NORMAL = "Normal";
-export const HARD = "Hard";
+
 export const LEVEL = {
-    EASY: {
+    Easy: {
         id: 1,
-        name: EASY,
-        cardNumber: 16,
+        name: "Easy",
+        cardNumber: 4,
         timer: 120 //seconds
     },
-    NORMAL: {
+    Normal: {
         id: 2,
-        name: NORMAL,
-        cardNumber: 16,
-        timer: 60 //seconds
+        name: "Normal",
+        cardNumber: 2,
+        timer: 160 //seconds
     },
-    HARD: {
+    Hard: {
         id: 3,
-        name: HARD,
+        name: "Hard",
         cardNumber: 36,
         timer: 120 //seconds
     }

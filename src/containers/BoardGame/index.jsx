@@ -5,7 +5,7 @@ import {AppContext} from "../../contexts/appContext"
 import {winGame} from "../../actions"
 const BoardGame = () => {
   const {state, dispatch} = useContext(AppContext);
-  const {initCards, isPlaying, level} = state;
+  const {initCards, isPlaying, level, isWon} = state;
   const [cards, setCards] = useState(initCards);
   const [cardIsCheckeds, setCardIsCheckeds] = useState([]);
   const [completed, setCompleted] = useState([]);
@@ -44,12 +44,20 @@ const BoardGame = () => {
     }
   };
   //reset card when change level
-  console.log({initCards})
   useEffect(()=> {
     if(!!initCards.length) {
       setCards(initCards)
     }
   }, [initCards])
+
+  useEffect(()=> {
+    if(!isWon) {
+      setCards(initCards)
+      setCardIsCheckeds([]);
+      setCompleted([])
+
+    }
+  }, [isWon, initCards])
 
   useEffect(() => {
     const newCards = cards.map(card => ({
