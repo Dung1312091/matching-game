@@ -20,7 +20,7 @@ const BoardGame = ({ initCards = [] }) => {
       setCompleted([...completed, ...newCheckers]);
     }
     if (checkersFull(newCheckers)) {
-      resetCheckersAfter(1000);
+      resetCheckersAfter(1200);
     }
     function validateCheckers(checkers) {
       return checkers.length === 2 && checkers[0].name === checkers[1].name;

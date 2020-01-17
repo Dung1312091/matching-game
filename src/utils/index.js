@@ -1,5 +1,21 @@
 import RandExp from "randexp";
-export function buildCards() {
+
+function shuffleArray(arr) {
+    let {
+        length
+    } = arr;
+    for (let i = 0; i < length; i++) {
+        let index = Math.floor(Math.random() * length);
+        let current = {
+            ...arr[i]
+        };
+        let random = arr[index];
+        arr[i] = random;
+        arr[index] = current;
+    }
+    return arr;
+}
+export function genarateCards() {
     let id = 0;
     const listCards = {};
     for (let i = 0; i < 8; i++) {
@@ -16,21 +32,5 @@ export function buildCards() {
         });
         return [...result, getCard(), getCard()];
     }, []);
-    return shuffle(cards);
-}
-
-function shuffle(arr) {
-    let {
-        length
-    } = arr;
-    for (let i = 0; i < length; i++) {
-        let randomIdx = Math.floor(Math.random() * length);
-        let currentCard = {
-            ...arr[i]
-        };
-        let randomCard = arr[randomIdx];
-        arr[i] = randomCard;
-        arr[randomIdx] = currentCard;
-    }
-    return arr;
+    return shuffleArray(cards);
 }
