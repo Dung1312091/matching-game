@@ -3,18 +3,20 @@ import { AppContext } from "./contexts/appContext";
 import { game } from "./reducers/game";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { genarateCards } from "./utils";
-import { BoardGame, Timer, SelectedLevel } from "./containers";
+
+import { BoardGame, Timer, SelectedLevel, Result, Message } from "./containers";
+import {initialState} from "./reducers/game"
 export default function App() {
-  const cards = genarateCards();
-  const [state, dispatch] = useReducer(game, {});
+  const [state, dispatch] = useReducer(game, initialState);
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <div className="App">
         <div className="App">
           <SelectedLevel />
+          <Result/>
           <Timer />
-          <BoardGame initCards={cards} />
+          <BoardGame />
+          <Message/>
         </div>
       </div>
     </AppContext.Provider>

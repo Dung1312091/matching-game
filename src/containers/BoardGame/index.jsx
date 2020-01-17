@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { Row, Col } from "react-bootstrap";
 import Card from "../../components/Card";
-
-const BoardGame = ({ initCards = [] }) => {
+import {AppContext} from "../../contexts/appContext"
+import {winGame} from "../../actions"
+const BoardGame = () => {
+  const {state, dispatch} = useContext(AppContext);
+  const {initCards, isPlaying, level} = state;
   const [cards, setCards] = useState(initCards);
   const [cardIsCheckeds, setCardIsCheckeds] = useState([]);
   const [completed, setCompleted] = useState([]);
@@ -40,6 +43,13 @@ const BoardGame = ({ initCards = [] }) => {
       }, time);
     }
   };
+  //reset card when change level
+  console.log({initCards})
+  useEffect(()=> {
+    if(!!initCards.length) {
+      setCards(initCards)
+    }
+  }, [initCards])
 
   useEffect(() => {
     const newCards = cards.map(card => ({
@@ -51,17 +61,24 @@ const BoardGame = ({ initCards = [] }) => {
     }));
     setCards(newCards);
   }, [cardIsCheckeds, completed]);
-  console.log({ cards });
 
+  //complete 
+  useEffect(()=> {
+    if(completed.length === level.cardNumber) {
+      dispatch(winGame())
+    }
+  },[completed.length, level ])
+  const renderBoardGame = () => <Row>
+  {cards.map(card => (
+    <Col xs={3} key={card.id}>
+      <Card card={card} onSelect={onSelectCard} />
+    </Col>
+  ))}
+</Row>
   return (
     <div className="board-game">
-      <Row>
-        {cards.map(card => (
-          <Col xs={3} key={card.id}>
-            <Card card={card} onSelect={onSelectCard} />
-          </Col>
-        ))}
-      </Row>
+      {isPlaying && renderBoardGame()}
+      
     </div>
   );
 };

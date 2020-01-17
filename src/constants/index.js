@@ -1,6 +1,6 @@
-const EASY = "Easy";
-const NORMAL = "Normal";
-const HARD = "Hard";
+export const EASY = "Easy";
+export const NORMAL = "Normal";
+export const HARD = "Hard";
 export const LEVEL = {
     EASY: {
         id: 1,

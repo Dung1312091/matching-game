@@ -10,3 +10,11 @@ export {
     default as SelectedLevel
 }
 from "./SelectedLevel"
+export {
+    default as Result
+}
+from "./Result"
+export {
+    default as Message
+}
+from "./Message"

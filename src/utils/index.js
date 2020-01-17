@@ -15,10 +15,10 @@ function shuffleArray(arr) {
     }
     return arr;
 }
-export function genarateCards() {
+export function genarateCards(level={}) {
     let id = 0;
     const listCards = {};
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < level.cardNumber / 2; i++) {
         const key = new RandExp(/[A-Z]/).gen();
         listCards[i] = key
     }
